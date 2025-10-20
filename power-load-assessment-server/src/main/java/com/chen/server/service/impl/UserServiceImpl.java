@@ -6,10 +6,10 @@ import com.chen.server.entity.User;
 import com.chen.server.enums.UserType;
 import com.chen.server.mapper.UserMapper;
 import com.chen.server.result.Result;
+import com.chen.server.service.AvatarService;
 import com.chen.server.service.UserService;
 import com.chen.server.utils.JwtUtils;
-import com.chen.server.vo.UserVO; // 添加VO类导入
-import org.springframework.beans.BeanUtils;
+import com.chen.server.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -28,6 +28,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Autowired
     private JwtUtils jwtUtils;
+
+    @Autowired
+    private AvatarService avatarService;
 
     @Override
     public Result register(User user) {
@@ -69,12 +72,19 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         UserVO userVO = new UserVO();
         userVO.setUsername(user.getUsername());
         userVO.setAvatar(user.getAvatar());
-        System.out.println(userVO.getAvatar());
         userVO.setUserType(user.getUserType());
 
         Map<String, Object> data = new HashMap<>();
         data.put("token", token);
-        data.put("user", userVO); // 返回UserVO而不是完整的User对象
+        data.put("user", userVO);
+
+        // 如果用户有头像，生成头像URL
+        if (user.getAvatar() != null && !user.getAvatar().isEmpty()) {
+            Result avatarResult = avatarService.getAvatarUrl(user.getAvatar());
+            if (avatarResult.getSuccess()) {
+                data.put("avatarInfo", avatarResult.getData());
+            }
+        }
 
         return Result.ok(data);
     }

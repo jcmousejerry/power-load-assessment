@@ -3,11 +3,13 @@ package com.chen.server.controller;
 import com.chen.server.dto.UserDTO;
 import com.chen.server.entity.User;
 import com.chen.server.result.Result;
+import com.chen.server.service.AvatarService;
 import com.chen.server.service.UserService;
 import com.chen.server.utils.LoginUserHolder;
 import com.chen.server.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Map;
 
@@ -17,6 +19,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private AvatarService avatarService;
 
     @PostMapping("/register")
     public Result register(@RequestBody UserDTO userDTO) {
@@ -51,4 +56,19 @@ public class UserController {
         return Result.ok(userVO);
     }
 
+    /**
+     * 上传用户头像
+     */
+    @PostMapping("/avatar")
+    public Result uploadAvatar(@RequestParam("avatar") MultipartFile file) {
+        return avatarService.uploadAvatar(file);
+    }
+
+    /**
+     * 获取当前用户头像URL
+     */
+    @GetMapping("/avatar-url")
+    public Result getAvatarUrl() {
+        return avatarService.getCurrentUserAvatarUrl();
+    }
 }

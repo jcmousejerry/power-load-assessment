@@ -24,3 +24,8 @@ mybatis-plus:
 logging:
   level:
     com.chen.server: debug
+minio:
+  endpoint: http://localhost:9000 # MinIO服务地址
+  access-key: minioadmin # 访问密钥
+  secret-key: minioadmin # 秘密密钥
+  bucket-name: power-load-assessment

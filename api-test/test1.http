@@ -1,5 +1,4 @@
 ### 用户注册1
-
 POST http://localhost:8081/api/user/register
 Content-Type: application/json
 
@@ -9,7 +8,6 @@ Content-Type: application/json
 }
 
 ### 用户注册2
-
 POST http://localhost:8081/api/user/register
 Content-Type: application/json
 
@@ -19,7 +17,6 @@ Content-Type: application/json
 }
 
 ### 用户登录
-
 POST http://localhost:8081/api/user/login
 Content-Type: application/json
 
@@ -30,4 +27,21 @@ Content-Type: application/json
 
 ### 获取用户个人信息（需要登录）
 GET http://localhost:8081/api/user/profile
-Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjMsInN1YiI6IjMiLCJpYXQiOjE3NjA2MjgzMzQsImV4cCI6MTc2MDcxNDczNH0.-axjhNTEIxhJAJKKEz-7yxF5jYBsnabmKCPHs-DZaJzpBw6Qu9inY4JJ4tujX5jf5nUg-v2rfKb5PuBchUX6sA
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEsInN1YiI6IjEiLCJpYXQiOjE3NjA4ODczNTUsImV4cCI6MTc2MDk3Mzc1NX0.xVLJjqfWMdfsfjCYz4INoWbMCgKJ2Etip_YlgpIQGIvU70QolIIvrJAR-sEZgr57jMwcj2YxteKSfFW0QQDlWg
+
+### 上传用户头像（需要登录）
+POST http://localhost:8081/api/user/avatar
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEsInN1YiI6IjEiLCJpYXQiOjE3NjA4ODczNTUsImV4cCI6MTc2MDk3Mzc1NX0.xVLJjqfWMdfsfjCYz4INoWbMCgKJ2Etip_YlgpIQGIvU70QolIIvrJAR-sEZgr57jMwcj2YxteKSfFW0QQDlWg
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="avatar"; filename="屏幕截图 2025-10-11 112145.png"
+
+< C:\Users\25064\Pictures\Screenshots\屏幕截图 2025-10-11 112145.png
+--WebAppBoundary--
+
+### 获取用户头像URL（需要登录）
+GET http://localhost:8081/api/user/avatar-url
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjMsInN1YiI6IjMiLCJpYXQiOjE3NjA5MjEzMzksImV4cCI6MTc2MTAwNzczOX0.m_fqFLNOQPSsU0cPfBD-ok58EkU0H2E8M7UXvKVhEapQ3YMWGGNlQSrXHehOpeUq3K48YQ-JSbZX_MQBYNDdFA
+
+
