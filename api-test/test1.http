@@ -14,7 +14,7 @@ POST http://localhost:8081/api/user/register
 Content-Type: application/json
 
 {
-  "username": "testuser2",
+  "username": "testuser3",
   "password": "password123"
 }
 
@@ -24,6 +24,10 @@ POST http://localhost:8081/api/user/login
 Content-Type: application/json
 
 {
-  "username": "testuser",
-  "password": "password12345"
+  "username": "testuser3",
+  "password": "password123"
 }
+
+### 获取用户个人信息（需要登录）
+GET http://localhost:8081/api/user/profile
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjMsInN1YiI6IjMiLCJpYXQiOjE3NjA2MjgzMzQsImV4cCI6MTc2MDcxNDczNH0.-axjhNTEIxhJAJKKEz-7yxF5jYBsnabmKCPHs-DZaJzpBw6Qu9inY4JJ4tujX5jf5nUg-v2rfKb5PuBchUX6sA

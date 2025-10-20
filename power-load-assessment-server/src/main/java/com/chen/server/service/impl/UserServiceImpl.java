@@ -69,6 +69,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         UserVO userVO = new UserVO();
         userVO.setUsername(user.getUsername());
         userVO.setAvatar(user.getAvatar());
+        System.out.println(userVO.getAvatar());
         userVO.setUserType(user.getUserType());
 
         Map<String, Object> data = new HashMap<>();

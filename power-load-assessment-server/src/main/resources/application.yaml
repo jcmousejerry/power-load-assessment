@@ -18,7 +18,7 @@ spring:
         min-idle: 1
         time-between-eviction-runs: 10s
   jackson:
-    default-property-inclusion: non_null # JSON处理时忽略非空字段
+    default-property-inclusion: non_null # JSON处理时忽略null字段
 mybatis-plus:
   type-aliases-package: com.chen.entity # 别名扫描包
 logging:
