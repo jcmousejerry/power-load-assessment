@@ -1,0 +1,35 @@
+### 创建数据分析任务
+POST http://localhost:8081/api/task/create
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEsInN1YiI6IjEiLCJpYXQiOjE3NjE0ODQxMjMsImV4cCI6MTc2MTU3MDUyM30.AjPU1jkZ-K4oJfnJkgXdJWHVgV8EvVnKCsgO80Mq_UYJ2jEpRNWMuakE9SZatikAcboc1Z7ywczPFF5G-zxUXQ
+
+{
+  "datasetId": 1,
+  "taskType": 0,
+  "clusterCount": 0,
+  "forecastSteps": 0
+}
+
+### 创建用户聚类任务
+POST http://localhost:8081/api/task/create
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEsInN1YiI6IjEiLCJpYXQiOjE3NjExMDYzMDEsImV4cCI6MTc2MTE5MjcwMX0.wQPRjFAKIyyTYqBt41UrT-r5QAtzUI03r8h933_1X-4issC5Zu_ZIs8L-LlfqBviP-a1lN79yn9wl32DvEWhG7A
+
+{
+  "datasetId": 1,
+  "taskType": 1,
+  "clusterCount": 3,
+  "forecastSteps": 0
+}
+
+### 创建负荷预测任务
+POST http://localhost:8081/api/task/create
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEsInN1YiI6IjEiLCJpYXQiOjE3NjExMDYzMDEsImV4cCI6MTc2MTE5MjcwMX0.wQPRjFAKIyTYqBt41UrT-r5QAtzUI03r8h933_1X-4issC5Zu_ZIs8L-LlfqBviP-a1lN79yn9wl32DvEWhG7A
+
+{
+  "datasetId": 1,
+  "taskType": 2,
+  "clusterCount": 0,
+  "forecastSteps": 7
+}

@@ -2,6 +2,7 @@ package com.chen.server.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.chen.server.dto.UserDTO;
 import com.chen.server.entity.User;
 import com.chen.server.enums.UserType;
 import com.chen.server.mapper.UserMapper;
@@ -9,6 +10,7 @@ import com.chen.server.result.Result;
 import com.chen.server.service.AvatarService;
 import com.chen.server.service.UserService;
 import com.chen.server.utils.JwtUtils;
+import com.chen.server.utils.LoginUserHolder;
 import com.chen.server.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -33,15 +35,17 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     private AvatarService avatarService;
 
     @Override
-    public Result register(User user) {
+    public Result register(UserDTO userDTO) {
         // 检查用户名是否已存在
-        User existingUser = userMapper.selectOne(new QueryWrapper<User>().eq("username", user.getUsername()));
+        User existingUser = userMapper.selectOne(new QueryWrapper<User>().eq("username", userDTO.getUsername()));
         if (existingUser != null) {
             return Result.fail("用户名已存在");
         }
 
-        // 加密密码
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        // 创建用户实体对象
+        User user = new User();
+        user.setUsername(userDTO.getUsername());
+        user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
 
         // 设置默认用户类型为普通用户
         user.setUserType(UserType.NORMAL.getCode());
@@ -53,7 +57,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Override
-    public Result login(String username, String password) {
+    public Result login(Map<String, String> credentials) {
+        String username = credentials.get("username");
+        String password = credentials.get("password");
+
         // 查找用户
         User user = userMapper.selectOne(new QueryWrapper<User>().eq("username", username));
         if (user == null) {
@@ -87,5 +94,22 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         }
 
         return Result.ok(data);
+    }
+
+    @Override
+    public Result getProfile() {
+        // 获取当前登录用户信息
+        User currentUser = LoginUserHolder.getUser();
+        if (currentUser == null) {
+            return Result.fail("未获取到用户信息");
+        }
+
+        // 创建返回的用户信息VO
+        UserVO userVO = new UserVO();
+        userVO.setUsername(currentUser.getUsername());
+        userVO.setAvatar(currentUser.getAvatar());
+        userVO.setUserType(currentUser.getUserType());
+
+        return Result.ok(userVO);
     }
 }

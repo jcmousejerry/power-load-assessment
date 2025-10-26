@@ -1,8 +1,16 @@
 server:
   port: 8081
+  tomcat:
+    max-http-form-post-size: 100MB  # 增加表单提交大小限制
 spring:
+  kafka:
+    bootstrap-servers: localhost:9092 # Kafka服务器地址
   application:
     name: power-load-assessment
+  servlet:
+    multipart:
+      max-file-size: 100MB          # 单个文件大小限制
+      max-request-size: 100MB       # 整个请求大小限制
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/power_load_assessment_db?useSSL=false&serverTimezone=UTC
@@ -29,3 +37,4 @@ minio:
   access-key: minioadmin # 访问密钥
   secret-key: minioadmin # 秘密密钥
   bucket-name: power-load-assessment
+

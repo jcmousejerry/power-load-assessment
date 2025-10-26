@@ -1,0 +1,101 @@
+GET http://localhost:8081/api/user/profile
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEsInN1YiI6IjEiLCJpYXQiOjE3NjE0ODQxMjMsImV4cCI6MTc2MTU3MDUyM30.AjPU1jkZ-K4oJfnJkgXdJWHVgV8EvVnKCsgO80Mq_UYJ2jEpRNWMuakE9SZatikAcboc1Z7ywczPFF5G-zxUXQ
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2025-10-26T211256.200.json
+
+###
+
+POST http://localhost:8081/api/user/login
+Content-Type: application/json
+Content-Length: 57
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "username": "testuser",
+  "password": "password123"
+}
+
+<> 2025-10-26T211249.200.json
+
+###
+
+GET http://localhost:8081/api/user/profile
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEsInN1YiI6IjEiLCJpYXQiOjE3NjE0ODQxMjMsImV4cCI6MTc2MTU3MDUyM30.AjPU1jkZ-K4oJfnJkgXdJWHVgV8EvVnKCsgO80Mq_UYJ2jEpRNWMuakE9SZatikAcboc1Z7ywczPFF5G-zxUXQ
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2025-10-26T211234.200.json
+
+###
+
+GET http://localhost:8081/api/user/profile
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEsInN1YiI6IjEiLCJpYXQiOjE3NjE0ODQxMjMsImV4cCI6MTc2MTU3MDUyM30.AjPU1jkZ-K4oJfnJkgXdJWHVgV8EvVnKCsgO80Mq_UYJ2jEpRNWMuakE9SZatikAcboc1Z7ywczPFF5G-zxUXQ
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2025-10-26T211219.200.json
+
+###
+
+POST http://localhost:8081/api/task/create
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEsInN1YiI6IjEiLCJpYXQiOjE3NjE0ODQxMjMsImV4cCI6MTc2MTU3MDUyM30.AjPU1jkZ-K4oJfnJkgXdJWHVgV8EvVnKCsgO80Mq_UYJ2jEpRNWMuakE9SZatikAcboc1Z7ywczPFF5G-zxUXQ
+Content-Length: 80
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "datasetId": 1,
+  "taskType": 0,
+  "clusterCount": 0,
+  "forecastSteps": 0
+}
+
+<> 2025-10-26T211045.200.json
+
+###
+
+GET http://localhost:8081/api/user/profile
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEsInN1YiI6IjEiLCJpYXQiOjE3NjE0ODQxMjMsImV4cCI6MTc2MTU3MDUyM30.AjPU1jkZ-K4oJfnJkgXdJWHVgV8EvVnKCsgO80Mq_UYJ2jEpRNWMuakE9SZatikAcboc1Z7ywczPFF5G-zxUXQ
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2025-10-26T210955.200.json
+
+###
+
+GET http://localhost:8081/api/user/profile
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEsInN1YiI6IjEiLCJpYXQiOjE3NjE0ODQxMjMsImV4cCI6MTc2MTU3MDUyM30.AjPU1jkZ-K4oJfnJkgXdJWHVgV8EvVnKCsgO80Mq_UYJ2jEpRNWMuakE9SZatikAcboc1Z7ywczPFF5G-zxUXQ
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2025-10-26T210938.200.json
+
+###
+
+POST http://localhost:8081/api/user/login
+Content-Type: application/json
+Content-Length: 57
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "username": "testuser",
+  "password": "password123"
+}
+
+<> 2025-10-26T210843.200.json
+
+###
+

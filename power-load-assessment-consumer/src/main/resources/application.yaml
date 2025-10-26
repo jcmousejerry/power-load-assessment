@@ -1,0 +1,32 @@
+server:
+  port: 8082
+
+spring:
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: data-analysis-task-group
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+      properties:
+        spring.json.trusted.packages: "*"
+        spring.deserializer.key.delegate.class: org.apache.kafka.common.serialization.StringDeserializer
+        spring.deserializer.value.delegate.class: org.springframework.kafka.support.serializer.JsonDeserializer
+
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/power_load_assessment_db?useSSL=false&serverTimezone=UTC
+    username: root
+    password: 123456
+
+  jackson:
+    default-property-inclusion: non_null
+
+mybatis-plus:
+  type-aliases-package: com.chen.server.entity
+  configuration:
+    map-underscore-to-camel-case: true
+
+logging:
+  level:
+    com.chen.consumer: debug

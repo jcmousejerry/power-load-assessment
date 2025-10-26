@@ -1,0 +1,14 @@
+### 数据集文件上传测试（使用查询参数）
+POST http://localhost:8081/api/dataset/upload?name=测试数据集&startDate=2017-01-01&endDate=2017-09-30
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEsInN1YiI6IjEiLCJpYXQiOjE3NjExMDYzMDEsImV4cCI6MTc2MTE5MjcwMX0.wQPRjFAKIyTYqBt41UrT-r5QAtzUI03r8h933_1X-4issC5Zu_ZIs8L-LlfqBviP-a1lN79yn9wl32DvEWhG7A
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="split_dataset_3.csv"
+
+< D:\ONLY_ENGLISH_DIR\idea_programs\cluster-load-prediction-scripts\data\split_dataset_3.csv
+--WebAppBoundary--
+
+### 获取当前用户的数据集列表
+GET http://localhost:8081/api/dataset/list
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEsInN1YiI6IjEiLCJpYXQiOjE3NjExMDYzMDEsImV4cCI6MTc2MTE5MjcwMX0.wQPRjFAKIyTYqBt41UrT-r5QAtzUI03r8h933_1X-4issC5Zu_ZIs8L-LlfqBviP-a1lN79yn9wl32DvEWhG7A

@@ -56,6 +56,7 @@ public class AvatarServiceImpl implements AvatarService {
 
             // 生成唯一文件名
             String originalFilename = file.getOriginalFilename();
+            System.out.println(originalFilename);
             String ext = originalFilename != null ?
                 originalFilename.substring(originalFilename.lastIndexOf(".")) : "";
             String fileName = "avatar/" + UUID.randomUUID().toString().replace("-", "") + ext;

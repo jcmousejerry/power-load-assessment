@@ -1,13 +1,4 @@
-### 用户注册1
-POST http://localhost:8081/api/user/register
-Content-Type: application/json
-
-{
-  "username": "testuser",
-  "password": "password123"
-}
-
-### 用户注册2
+### 用户注册
 POST http://localhost:8081/api/user/register
 Content-Type: application/json
 
@@ -21,27 +12,26 @@ POST http://localhost:8081/api/user/login
 Content-Type: application/json
 
 {
-  "username": "testuser3",
+  "username": "testuser",
   "password": "password123"
 }
 
 ### 获取用户个人信息（需要登录）
 GET http://localhost:8081/api/user/profile
-Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEsInN1YiI6IjEiLCJpYXQiOjE3NjA4ODczNTUsImV4cCI6MTc2MDk3Mzc1NX0.xVLJjqfWMdfsfjCYz4INoWbMCgKJ2Etip_YlgpIQGIvU70QolIIvrJAR-sEZgr57jMwcj2YxteKSfFW0QQDlWg
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEsInN1YiI6IjEiLCJpYXQiOjE3NjE0ODQxMjMsImV4cCI6MTc2MTU3MDUyM30.AjPU1jkZ-K4oJfnJkgXdJWHVgV8EvVnKCsgO80Mq_UYJ2jEpRNWMuakE9SZatikAcboc1Z7ywczPFF5G-zxUXQ
 
 ### 上传用户头像（需要登录）
 POST http://localhost:8081/api/user/avatar
-Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEsInN1YiI6IjEiLCJpYXQiOjE3NjA4ODczNTUsImV4cCI6MTc2MDk3Mzc1NX0.xVLJjqfWMdfsfjCYz4INoWbMCgKJ2Etip_YlgpIQGIvU70QolIIvrJAR-sEZgr57jMwcj2YxteKSfFW0QQDlWg
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEsInN1YiI6IjEiLCJpYXQiOjE3NjEwOTM5ODUsImV4cCI6MTc2MTE4MDM4NX0.l2wspW_XyhH5FTpnNpbEvmhwYYecK4n-lohVeezJRqQUoH494WqCAGIGPU8t4vV-evxKZcyRzgdWU_wAue4h3g
 Content-Type: multipart/form-data; boundary=WebAppBoundary
 
 --WebAppBoundary
-Content-Disposition: form-data; name="avatar"; filename="屏幕截图 2025-10-11 112145.png"
+Content-Disposition: form-data; name="avatar"; filename="p7.png"
 
-< C:\Users\25064\Pictures\Screenshots\屏幕截图 2025-10-11 112145.png
+< C:\Users\25064\Desktop\temp\p7.png
 --WebAppBoundary--
 
 ### 获取用户头像URL（需要登录）
 GET http://localhost:8081/api/user/avatar-url
-Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjMsInN1YiI6IjMiLCJpYXQiOjE3NjA5MjEzMzksImV4cCI6MTc2MTAwNzczOX0.m_fqFLNOQPSsU0cPfBD-ok58EkU0H2E8M7UXvKVhEapQ3YMWGGNlQSrXHehOpeUq3K48YQ-JSbZX_MQBYNDdFA
-
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEsInN1YiI6IjEiLCJpYXQiOjE3NjEwNTk1NDksImV4cCI6MTc2MTE0NTk0OX0.wSFEqJrbf6KgcSFNf88ODLu7os_mDaz3gExNdLwLA6TQogD5XZujAgTCaaxYk6OSvC5tI-9W5x40de_0bsBXqg
 
