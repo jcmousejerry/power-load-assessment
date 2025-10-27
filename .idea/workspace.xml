@@ -5,17 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="be13c31a-5521-4330-90a8-8c31b68a44dd" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/f32f4334-afc0-49c9-b4d4-d8b8ef9ca9d8.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/f32f4334-afc0-49c9-b4d4-d8b8ef9ca9d8.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-test/test1.http" beforeDir="false" afterPath="$PROJECT_DIR$/api-test/test1.http" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-test/test3.http" beforeDir="false" afterPath="$PROJECT_DIR$/api-test/test3.http" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/power-load-assessment-consumer/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/power-load-assessment-consumer/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/power-load-assessment-consumer/src/main/java/com/chen/consumer/config/KafkaConsumerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/power-load-assessment-consumer/src/main/java/com/chen/consumer/config/KafkaConsumerConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/power-load-assessment-consumer/src/main/java/com/chen/consumer/entity/DataAnalysisTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/power-load-assessment-consumer/src/main/java/com/chen/consumer/entity/DataAnalysisTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/power-load-assessment-consumer/src/main/java/com/chen/consumer/listener/DataAnalysisTaskListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/power-load-assessment-consumer/src/main/java/com/chen/consumer/listener/DataAnalysisTaskListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/power-load-assessment-server/src/main/java/com/chen/server/service/impl/DataAnalysisTaskServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/power-load-assessment-server/src/main/java/com/chen/server/service/impl/DataAnalysisTaskServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/temp/temp1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/temp/temp2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/temp/temp3.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +57,7 @@
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/ONLY_ENGLISH_DIR/projects/power-load-assessment-scripts",
+    "last_opened_file_path": "D:/ONLY_ENGLISH_DIR/projects/hm-dianping",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -81,7 +75,7 @@
     ]
   }
 }]]></component>
-  <component name="RunManager" selected="HTTP Request.test3 | 创建数据分析任务">
+  <component name="RunManager" selected="Spring Boot.PowerLoadAssessmentConsumerApplication">
     <configuration name="test1 | 获取用户个人信息（需要登录）" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/api-test/test1.http" index="3" requestIdentifier="获取用户个人信息（需要登录）" runType="Run single request">
       <method v="2" />
     </configuration>
@@ -119,8 +113,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="HTTP Request.test3 | 创建数据分析任务" />
         <item itemvalue="Spring Boot.PowerLoadAssessmentConsumerApplication" />
+        <item itemvalue="HTTP Request.test3 | 创建数据分析任务" />
         <item itemvalue="HTTP Request.test1 | 用户登录" />
         <item itemvalue="HTTP Request.test1 | 获取用户个人信息（需要登录）" />
       </list>
@@ -145,7 +139,7 @@
       <workItem from="1761481835760" duration="12000" />
       <workItem from="1761486851594" duration="4183000" />
       <workItem from="1761523405226" duration="4392000" />
-      <workItem from="1761527844313" duration="8080000" />
+      <workItem from="1761527844313" duration="10341000" />
     </task>
     <servers />
   </component>
