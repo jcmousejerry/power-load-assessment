@@ -21,8 +21,11 @@ public class DataAnalysisTaskListener {
     @Autowired
     private DataAnalysisTaskMapper taskMapper;
 
-    // Python脚本路径 - 根据实际情况调整
-    private static final String PYTHON_SCRIPT_PATH = "/path/to/your/python/script.py";
+    // Python脚本路径
+    private static final String PYTHON_SCRIPT_PATH = "D:/ONLY_ENGLISH_DIR/projects/power-load-assessment-scripts/task2.py";
+
+    // 指定Anaconda虚拟环境中的Python解释器路径
+    private static final String PYTHON_EXECUTABLE_PATH = "D:/anaconda/envs/self_env_2/python.exe";
 
     @KafkaListener(topics = "data-analysis-task-topic", groupId = "data-analysis-task-group")
     public void handleDataAnalysisTask(DataAnalysisTask task) {
@@ -48,7 +51,7 @@ public class DataAnalysisTaskListener {
     private void executePythonScript(DataAnalysisTask task) throws Exception {
         // 构建命令行参数
         ProcessBuilder processBuilder = new ProcessBuilder();
-        processBuilder.command("python", PYTHON_SCRIPT_PATH,
+        processBuilder.command(PYTHON_EXECUTABLE_PATH, PYTHON_SCRIPT_PATH,
                               "--taskId", String.valueOf(task.getId()),
                               "--taskType", String.valueOf(task.getTaskType()),
                               "--datasetId", String.valueOf(task.getDatasetId()));
@@ -60,7 +63,14 @@ public class DataAnalysisTaskListener {
         BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
         String line;
         while ((line = reader.readLine()) != null) {
-            logger.info("Python脚本输出: {}", line);
+            logger.info("Python脚本输出: {}", line); // 格式化输出方式
+        }
+
+        // 读取错误输出
+        BufferedReader errorReader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+        String errorLine;
+        while ((errorLine = errorReader.readLine()) != null) {
+            logger.error("Python脚本错误输出: {}", errorLine);
         }
 
         // 等待执行完成

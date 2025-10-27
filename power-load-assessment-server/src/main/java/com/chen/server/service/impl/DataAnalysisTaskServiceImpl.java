@@ -35,6 +35,8 @@ public class DataAnalysisTaskServiceImpl extends ServiceImpl<DataAnalysisTaskMap
             // 设置任务状态为未完成
             task.setStatus(TaskStatus.PENDING.getCode());
 
+            System.out.println(task.getId());
+
             // 保存到数据库
             dataAnalysisTaskMapper.insert(task);
 

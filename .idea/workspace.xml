@@ -5,20 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="be13c31a-5521-4330-90a8-8c31b68a44dd" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/aws.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/f32f4334-afc0-49c9-b4d4-d8b8ef9ca9d8.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/f32f4334-afc0-49c9-b4d4-d8b8ef9ca9d8.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api-test/test1.http" beforeDir="false" afterPath="$PROJECT_DIR$/api-test/test1.http" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-test/test2.http" beforeDir="false" afterPath="$PROJECT_DIR$/api-test/test2.http" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-test/test3.http" beforeDir="false" afterPath="$PROJECT_DIR$/api-test/test3.http" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/power-load-assessment-consumer/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/power-load-assessment-consumer/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/power-load-assessment-server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/power-load-assessment-server/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/power-load-assessment-server/src/main/java/com/chen/server/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/power-load-assessment-server/src/main/java/com/chen/server/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/power-load-assessment-server/src/main/java/com/chen/server/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/power-load-assessment-server/src/main/java/com/chen/server/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/power-load-assessment-server/src/main/java/com/chen/server/service/impl/AvatarServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/power-load-assessment-server/src/main/java/com/chen/server/service/impl/AvatarServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/power-load-assessment-server/src/main/java/com/chen/server/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/power-load-assessment-server/src/main/java/com/chen/server/service/impl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/power-load-assessment-server/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/power-load-assessment-server/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/power-load-assessment-consumer/src/main/java/com/chen/consumer/config/KafkaConsumerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/power-load-assessment-consumer/src/main/java/com/chen/consumer/config/KafkaConsumerConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/power-load-assessment-consumer/src/main/java/com/chen/consumer/entity/DataAnalysisTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/power-load-assessment-consumer/src/main/java/com/chen/consumer/entity/DataAnalysisTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/power-load-assessment-consumer/src/main/java/com/chen/consumer/listener/DataAnalysisTaskListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/power-load-assessment-consumer/src/main/java/com/chen/consumer/listener/DataAnalysisTaskListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/power-load-assessment-server/src/main/java/com/chen/server/service/impl/DataAnalysisTaskServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/power-load-assessment-server/src/main/java/com/chen/server/service/impl/DataAnalysisTaskServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,50 +45,70 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;HTTP Request.test1 | 用户登录.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.test1 | 获取用户个人信息（需要登录）.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.test3 | 创建数据分析任务.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.power-load-assessment-server [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.power-load-assessment-server [compile].executor&quot;: &quot;Run&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;Spring Boot.PowerLoadAssessmentServerApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/ONLY_ENGLISH_DIR/projects/power-load-assessment-scripts&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;web.server&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "HTTP Request.test1 | 用户登录.executor": "Run",
+    "HTTP Request.test1 | 获取用户个人信息（需要登录）.executor": "Run",
+    "HTTP Request.test3 | 创建数据分析任务.executor": "Run",
+    "Maven.power-load-assessment-server [clean].executor": "Run",
+    "Maven.power-load-assessment-server [compile].executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.PowerLoadAssessmentConsumerApplication.executor": "Run",
+    "Spring Boot.PowerLoadAssessmentServerApplication.executor": "Run",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/ONLY_ENGLISH_DIR/projects/power-load-assessment-scripts",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "configurable.group.editor",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
     ]
   }
-}</component>
-  <component name="RunManager" selected="Spring Boot.PowerLoadAssessmentServerApplication">
+}]]></component>
+  <component name="RunManager" selected="HTTP Request.test3 | 创建数据分析任务">
+    <configuration name="test1 | 获取用户个人信息（需要登录）" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/api-test/test1.http" index="3" requestIdentifier="获取用户个人信息（需要登录）" runType="Run single request">
+      <method v="2" />
+    </configuration>
     <configuration name="test1 | 用户登录" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/api-test/test1.http" index="2" requestIdentifier="用户登录" runType="Run single request">
       <method v="2" />
     </configuration>
     <configuration name="test1 | 获取用户个人信息（需要登录）" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/api-test/test1.http" index="3" requestIdentifier="获取用户个人信息（需要登录）" runType="Run single request">
       <method v="2" />
     </configuration>
+    <configuration name="test1 | 用户登录" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/api-test/test1.http" index="2" requestIdentifier="用户登录" runType="Run single request">
+      <method v="2" />
+    </configuration>
     <configuration name="test3 | 创建数据分析任务" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/api-test/test3.http" requestIdentifier="创建数据分析任务" runType="Run single request">
       <method v="2" />
+    </configuration>
+    <configuration name="PowerLoadAssessmentConsumerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="power-load-assessment-consumer" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.chen.consumer.PowerLoadAssessmentConsumerApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.chen.consumer.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration name="PowerLoadAssessmentServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="power-load-assessment-server" />
@@ -102,12 +119,17 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="HTTP Request.test1 | 获取用户个人信息（需要登录）" />
         <item itemvalue="HTTP Request.test3 | 创建数据分析任务" />
+        <item itemvalue="Spring Boot.PowerLoadAssessmentConsumerApplication" />
+        <item itemvalue="HTTP Request.test1 | 用户登录" />
+        <item itemvalue="HTTP Request.test1 | 获取用户个人信息（需要登录）" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="be13c31a-5521-4330-90a8-8c31b68a44dd" name="Changes" comment="" />
@@ -122,10 +144,16 @@
       <workItem from="1761481175081" duration="517000" />
       <workItem from="1761481835760" duration="12000" />
       <workItem from="1761486851594" duration="4183000" />
+      <workItem from="1761523405226" duration="4392000" />
+      <workItem from="1761527844313" duration="8080000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

@@ -1,0 +1,23 @@
+.\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
+
+.\bin\windows\kafka-server-start.bat .\config\server.properties
+
+.\bin\windows\kafka-server-stop.bat
+
+.\bin\windows\zookeeper-server-stop.bat
+
+.\bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic data-analysis-task-topic --from-beginning
+
+.\bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic data-analysis-task-topic
+
+# 列出所有 topics
+.\bin\windows\kafka-topics.bat --bootstrap-server localhost:9092 --list
+
+# 查看特定 topic 的详细信息
+.\bin\windows\kafka-topics.bat --bootstrap-server localhost:9092 --describe --topic data-analysis-task-topic
+
+# 列出所有消费者组
+.\bin\windows\kafka-consumer-groups.bat --bootstrap-server localhost:9092 --list
+
+# 查看特定消费者组的详细信息
+.\bin\windows\kafka-consumer-groups.bat --bootstrap-server localhost:9092 --describe --group data-analysis-task-group

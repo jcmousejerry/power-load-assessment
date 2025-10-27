@@ -1,0 +1,11 @@
+{
+  "success": true,
+  "data": {
+    "user": {
+      "username": "testuser",
+      "avatar": "avatar/7b473f4b6bb149ba9966c608c455a01c.png",
+      "userType": 0
+    },
+    "token": "eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEsInN1YiI6IjEiLCJpYXQiOjE3NjE1Mjg0MzQsImV4cCI6MTc2MTYxNDgzNH0.ii_SQefyB7-4p4eHue4JDm3_wITnZC3fsyRiMiOszAz6KHA1s_QfBFQ5031i-Q_9kcW4Uqrt8n9Xxeoi9IXX4w"
+  }
+}

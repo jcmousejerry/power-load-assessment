@@ -1,0 +1,7 @@
+{
+  "timestamp": "2025-10-27T01:05:31.924+00:00",
+  "status": 500,
+  "error": "Internal Server Error",
+  "message": "",
+  "path": "/api/user/login"
+}
