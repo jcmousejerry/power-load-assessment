@@ -1,6 +1,5 @@
 package com.chen.consumer.config;
 
-import com.chen.consumer.entity.DataAnalysisTask;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Value;
@@ -31,7 +30,6 @@ public class KafkaConsumerConfig {
         props.put("spring.deserializer.key.delegate.class", StringDeserializer.class);
         props.put("spring.deserializer.value.delegate.class", JsonDeserializer.class);
         props.put(JsonDeserializer.TRUSTED_PACKAGES, "*");
-        props.put(JsonDeserializer.TYPE_MAPPINGS, "com.chen.server.entity.DataAnalysisTask:com.chen.consumer.entity.DataAnalysisTask");
         return new DefaultKafkaConsumerFactory<>(props);
     }
 

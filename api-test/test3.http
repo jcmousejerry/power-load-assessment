@@ -1,7 +1,7 @@
 ### 创建数据分析任务
 POST http://localhost:8081/api/task/create
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEsInN1YiI6IjEiLCJpYXQiOjE3NjE1MzMzOTAsImV4cCI6MTc2MTYxOTc5MH0.DMbNIxDdmi5jqCnGoXYlgz-X9AXgApm1vgUkNECUfRqa0YsPORJLX3wP0S2E-956xt4vogqK6nLonpt6Tv743A
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEsInN1YiI6IjEiLCJpYXQiOjE3NjE4MDg0ODAsImV4cCI6MTc2MTg5NDg4MH0.cMebPs_KTr2OuER_HkJy22GB0Y_fpDxYbVlHnELoOgQRujhV0vKgdok0-JjeOT7X3HxTZdf3m4dJWOkPuEH38w
 
 {
   "datasetId": 1,
@@ -13,23 +13,23 @@ Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEsInN1YiI6IjEiLCJpYXQiOjE3NjE1
 ### 创建用户聚类任务
 POST http://localhost:8081/api/task/create
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEsInN1YiI6IjEiLCJpYXQiOjE3NjExMDYzMDEsImV4cCI6MTc2MTE5MjcwMX0.wQPRjFAKIyyTYqBt41UrT-r5QAtzUI03r8h933_1X-4issC5Zu_ZIs8L-LlfqBviP-a1lN79yn9wl32DvEWhG7A
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEsInN1YiI6IjEiLCJpYXQiOjE3NjE4MDg0ODAsImV4cCI6MTc2MTg5NDg4MH0.cMebPs_KTr2OuER_HkJy22GB0Y_fpDxYbVlHnELoOgQRujhV0vKgdok0-JjeOT7X3HxTZdf3m4dJWOkPuEH38w
 
 {
   "datasetId": 1,
   "taskType": 1,
-  "clusterCount": 3,
+  "clusterCount": 2,
   "forecastSteps": 0
 }
 
 ### 创建负荷预测任务
 POST http://localhost:8081/api/task/create
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEsInN1YiI6IjEiLCJpYXQiOjE3NjExMDYzMDEsImV4cCI6MTc2MTE5MjcwMX0.wQPRjFAKIyTYqBt41UrT-r5QAtzUI03r8h933_1X-4issC5Zu_ZIs8L-LlfqBviP-a1lN79yn9wl32DvEWhG7A
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEsInN1YiI6IjEiLCJpYXQiOjE3NjE4MDg0ODAsImV4cCI6MTc2MTg5NDg4MH0.cMebPs_KTr2OuER_HkJy22GB0Y_fpDxYbVlHnELoOgQRujhV0vKgdok0-JjeOT7X3HxTZdf3m4dJWOkPuEH38w
 
 {
   "datasetId": 1,
   "taskType": 2,
   "clusterCount": 0,
-  "forecastSteps": 7
+  "forecastSteps": 5
 }

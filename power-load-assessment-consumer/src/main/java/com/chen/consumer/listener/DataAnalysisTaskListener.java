@@ -3,6 +3,7 @@ package com.chen.consumer.listener;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.chen.consumer.entity.DataAnalysisTask;
 import com.chen.consumer.enums.TaskStatus;
+import com.chen.consumer.enums.TaskType; // 新增导入
 import com.chen.consumer.mapper.DataAnalysisTaskMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +13,8 @@ import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.Map;
 
 @Component
 public class DataAnalysisTaskListener {
@@ -22,39 +25,56 @@ public class DataAnalysisTaskListener {
     private DataAnalysisTaskMapper taskMapper;
 
     // Python脚本路径
-    private static final String PYTHON_SCRIPT_PATH = "D:/ONLY_ENGLISH_DIR/projects/power-load-assessment-scripts/task2.py";
+    private static final String PYTHON_SCRIPT_PATH = "D:/ONLY_ENGLISH_DIR/projects/python-scripts-202510/power-load-assessment-scripts/task2.py";
 
     // 指定Anaconda虚拟环境中的Python解释器路径
     private static final String PYTHON_EXECUTABLE_PATH = "D:/anaconda/envs/self_env_2/python.exe";
 
     @KafkaListener(topics = "data-analysis-task-topic", groupId = "data-analysis-task-group")
-    public void handleDataAnalysisTask(DataAnalysisTask task) {
+    public void handleDataAnalysisTask(Map<String, Object> message) {
         try {
-            logger.info("接收到数据分析任务: ID={}, Type={}", task.getId(), task.getTaskType());
+            // 从消息中提取任务和数据集路径
+            Object taskObj = message.get("task");
+            String datasetPath = (String) message.get("datasetPath");
+            // 提取clusterCount和forecastSteps参数
+            Integer clusterCount = (Integer) message.get("clusterCount");
+            Integer forecastSteps = (Integer) message.get("forecastSteps");
+
+            // 安全地将 LinkedHashMap 转换为 DataAnalysisTask 对象
+            DataAnalysisTask task = convertToDataAnalysisTask(taskObj);
+
+            logger.info("接收到数据分析任务: ID={}, Type={}, datasetPath={}", task.getId(), task.getTaskType(), datasetPath);
 
             // 执行Python脚本
-            executePythonScript(task);
+            executePythonScript(task, datasetPath, clusterCount, forecastSteps);
 
             // 更新任务状态为已完成
             updateTaskStatus(task.getId(), TaskStatus.COMPLETED.getCode());
 
             logger.info("数据分析任务处理完成: ID={}", task.getId());
         } catch (Exception e) {
-            logger.error("处理数据分析任务失败: ID=" + task.getId(), e);
+            logger.error("处理数据分析任务失败", e);
         }
     }
 
     /**
      * 执行Python脚本
      * @param task 任务对象
+     * @param datasetPath 数据集路径
+     * @param clusterCount 聚类数量
+     * @param forecastSteps 预测步数
      */
-    private void executePythonScript(DataAnalysisTask task) throws Exception {
+    private void executePythonScript(DataAnalysisTask task, String datasetPath, Integer clusterCount, Integer forecastSteps) throws Exception {
         // 构建命令行参数
         ProcessBuilder processBuilder = new ProcessBuilder();
         processBuilder.command(PYTHON_EXECUTABLE_PATH, PYTHON_SCRIPT_PATH,
-                              "--taskId", String.valueOf(task.getId()),
-                              "--taskType", String.valueOf(task.getTaskType()),
-                              "--datasetId", String.valueOf(task.getDatasetId()));
+                "--taskId", String.valueOf(task.getId()),
+                "--taskType", String.valueOf(task.getTaskType()),
+                "--datasetId", String.valueOf(task.getDatasetId()),
+                "--datasetPath", datasetPath);
+
+        processBuilder.command().addAll(Arrays.asList("--clusterCount", String.valueOf(clusterCount)));
+        processBuilder.command().addAll(Arrays.asList("--forecastSteps", String.valueOf(forecastSteps)));
 
         // 启动进程
         Process process = processBuilder.start();
@@ -63,7 +83,7 @@ public class DataAnalysisTaskListener {
         BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
         String line;
         while ((line = reader.readLine()) != null) {
-            logger.info("Python脚本输出: {}", line); // 格式化输出方式
+            logger.info("Python脚本输出: {}", line);
         }
 
         // 读取错误输出
@@ -78,6 +98,32 @@ public class DataAnalysisTaskListener {
         if (exitCode != 0) {
             throw new RuntimeException("Python脚本执行失败，退出码: " + exitCode);
         }
+    }
+
+    /**
+     * 将 Object（通常是 LinkedHashMap）转换为 DataAnalysisTask 对象
+     * @param obj 从 Kafka 消息中获取的对象
+     * @return DataAnalysisTask 实例
+     */
+    @SuppressWarnings("unchecked")
+    private DataAnalysisTask convertToDataAnalysisTask(Object obj) {
+        if (obj instanceof Map) {
+            Map<String, Object> map = (Map<String, Object>) obj;
+            DataAnalysisTask task = new DataAnalysisTask();
+
+            // 手动设置各个字段
+            task.setId(((Number) map.get("id")).longValue());
+            task.setUserId(((Number) map.get("userId")).longValue());
+            task.setDatasetId(((Number) map.get("datasetId")).longValue());
+            task.setTaskType((Integer) map.get("taskType"));
+            task.setStatus((Integer) map.get("status"));
+
+            return task;
+        } else if (obj instanceof DataAnalysisTask) {
+            return (DataAnalysisTask) obj;
+        }
+
+        throw new IllegalArgumentException("无法将对象转换为 DataAnalysisTask: " + obj.getClass());
     }
 
     /**
