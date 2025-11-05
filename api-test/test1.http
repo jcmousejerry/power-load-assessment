@@ -18,7 +18,7 @@ Content-Type: application/json
 
 ### 获取用户个人信息（需要登录）
 GET http://localhost:8081/api/user/profile
-Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEsInN1YiI6IjEiLCJpYXQiOjE3NjE2OTczNDksImV4cCI6MTc2MTc4Mzc0OX0.d1HWhACdEgfjPS7y_rV6gUMV-tCk076la6NKmk6_6e3FX8pqaYLIvrpRJ7TtCDwWh11Mce6qWc4tJHawWXBmcg
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEsInN1YiI6IjEiLCJpYXQiOjE3NjE4MzUzODIsImV4cCI6MTc2MTkyMTc4Mn0.dOdvwzTx0VlC4gymNAP6FMny9g0JWpzyt4XMBC0Dgt9admu-agFtD7Aqrto6_seY9aB0SGgf80GXywTgyPeZfA
 
 ### 上传用户头像（需要登录）
 POST http://localhost:8081/api/user/avatar
