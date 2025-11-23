@@ -1,0 +1,11 @@
+### 获取基本统计特征提取任务结果
+GET http://localhost:8081/api/statistical-feature-result/1985994370188230658
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEsInN1YiI6IjEiLCJpYXQiOjE3NjI5MDg4MTIsImV4cCI6MTc2Mjk5NTIxMn0.Q7kFc4GDVqmsOZfr-MbODwXqExDuxLRMTXhwXGK5_MPt95zfzQrbGDEP-HIREWnmE9ehRo9u-XvqJ18qtUhSUA
+
+### 获取用户聚类任务结果
+GET http://localhost:8081/api/user-clustering-result/1983796897143234562
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEsInN1YiI6IjEiLCJpYXQiOjE3NjM4OTA4MDQsImV4cCI6MTc2Mzk3NzIwNH0.6Zv-1b56lQHMPu1nPxrjZM1YGQld7zi8St0I_TwHlNHsblsMDbetAfgmyp6UuR-dbZWrX1cYc9PFB_Fwoqm1eQ
+
+### 获取负荷预测任务结果
+GET http://localhost:8081/api/load-forecast-result/1983907804301197313
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEsInN1YiI6IjEiLCJpYXQiOjE3NjM5MDI2MTIsImV4cCI6MTc2Mzk4OTAxMn0.9S3PvmtVIvwpCHKdyKKshFe0RaS-1NMZ6_T5Q78bXsjGuWJXbzmWqzyeAGEKsraV7COUqCXVCsoaqPIcl04AEA

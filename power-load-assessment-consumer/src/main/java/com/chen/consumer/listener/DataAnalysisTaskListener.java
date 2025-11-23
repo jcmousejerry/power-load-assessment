@@ -3,7 +3,7 @@ package com.chen.consumer.listener;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.chen.consumer.entity.DataAnalysisTask;
 import com.chen.consumer.enums.TaskStatus;
-import com.chen.consumer.enums.TaskType; // 新增导入
+import com.chen.consumer.enums.TaskType;
 import com.chen.consumer.mapper.DataAnalysisTaskMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

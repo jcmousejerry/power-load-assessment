@@ -1,5 +1,6 @@
 package com.chen.server.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.chen.server.dto.DataAnalysisTaskDTO;
 import com.chen.server.entity.DataAnalysisTask;
@@ -16,6 +17,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -48,6 +50,8 @@ public class DataAnalysisTaskServiceImpl extends ServiceImpl<DataAnalysisTaskMap
             // 保存到数据库
             dataAnalysisTaskMapper.insert(task);
 
+            System.out.println(task.getId());
+
             // 查询数据集名称
             DatasetInfo datasetInfo = datasetInfoMapper.selectById(taskDTO.getDatasetId());
             String datasetPath = datasetInfo != null ? datasetInfo.getPath() : "";
@@ -69,4 +73,27 @@ public class DataAnalysisTaskServiceImpl extends ServiceImpl<DataAnalysisTaskMap
         }
     }
 
+    @Override
+    public Result getCurrentUserTasks() {
+        try {
+            // 获取当前登录用户ID
+            Long userId = LoginUserHolder.getUserId();
+            if (userId == null) {
+                return Result.fail("用户未登录");
+            }
+
+            // 构造查询条件：根据 userId 查询
+            QueryWrapper<DataAnalysisTask> queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq("user_id", userId);
+            queryWrapper.orderByDesc("create_time");
+
+            // 执行查询
+            List<DataAnalysisTask> tasks = dataAnalysisTaskMapper.selectList(queryWrapper);
+
+            // 返回成功结果
+            return Result.ok(tasks);
+        } catch (Exception e) {
+            return Result.fail("查询任务列表失败: " + e.getMessage());
+        }
+    }
 }

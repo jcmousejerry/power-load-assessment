@@ -1,7 +1,7 @@
 ### 创建数据分析任务
 POST http://localhost:8081/api/task/create
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEsInN1YiI6IjEiLCJpYXQiOjE3NjE4MDg0ODAsImV4cCI6MTc2MTg5NDg4MH0.cMebPs_KTr2OuER_HkJy22GB0Y_fpDxYbVlHnELoOgQRujhV0vKgdok0-JjeOT7X3HxTZdf3m4dJWOkPuEH38w
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEsInN1YiI6IjEiLCJpYXQiOjE3NjIzMzI4MzgsImV4cCI6MTc2MjQxOTIzOH0.DAy9Y_ntHuA-AR05e6jRWcJXQLhK3RB3dxysEVkD-XstE9RbUjr1DPPFQ34dBp3LOLHgwcurpVo-mspuzZ-09A
 
 {
   "datasetId": 1,
@@ -33,3 +33,7 @@ Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEsInN1YiI6IjEiLCJpYXQiOjE3NjE4
   "clusterCount": 0,
   "forecastSteps": 5
 }
+
+### 获取当前用户的所有任务信息
+GET http://localhost:8081/api/task/list
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEsInN1YiI6IjEiLCJpYXQiOjE3NjM5MDI2MTIsImV4cCI6MTc2Mzk4OTAxMn0.9S3PvmtVIvwpCHKdyKKshFe0RaS-1NMZ6_T5Q78bXsjGuWJXbzmWqzyeAGEKsraV7COUqCXVCsoaqPIcl04AEA

@@ -18,17 +18,17 @@ Content-Type: application/json
 
 ### 获取用户个人信息（需要登录）
 GET http://localhost:8081/api/user/profile
-Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEsInN1YiI6IjEiLCJpYXQiOjE3NjE4MzUzODIsImV4cCI6MTc2MTkyMTc4Mn0.dOdvwzTx0VlC4gymNAP6FMny9g0JWpzyt4XMBC0Dgt9admu-agFtD7Aqrto6_seY9aB0SGgf80GXywTgyPeZfA
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEsInN1YiI6IjEiLCJpYXQiOjE3NjM5MDI2MTIsImV4cCI6MTc2Mzk4OTAxMn0.9S3PvmtVIvwpCHKdyKKshFe0RaS-1NMZ6_T5Q78bXsjGuWJXbzmWqzyeAGEKsraV7COUqCXVCsoaqPIcl04AEA
 
 ### 上传用户头像（需要登录）
 POST http://localhost:8081/api/user/avatar
-Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEsInN1YiI6IjEiLCJpYXQiOjE3NjEwOTM5ODUsImV4cCI6MTc2MTE4MDM4NX0.l2wspW_XyhH5FTpnNpbEvmhwYYecK4n-lohVeezJRqQUoH494WqCAGIGPU8t4vV-evxKZcyRzgdWU_wAue4h3g
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEsInN1YiI6IjEiLCJpYXQiOjE3NjM4OTA4MDQsImV4cCI6MTc2Mzk3NzIwNH0.6Zv-1b56lQHMPu1nPxrjZM1YGQld7zi8St0I_TwHlNHsblsMDbetAfgmyp6UuR-dbZWrX1cYc9PFB_Fwoqm1eQ
 Content-Type: multipart/form-data; boundary=WebAppBoundary
 
 --WebAppBoundary
-Content-Disposition: form-data; name="avatar"; filename="p7.png"
+Content-Disposition: form-data; name="avatar"; filename="p9.png"
 
-< C:\Users\25064\Desktop\temp\p7.png
+< C:\Users\25064\Desktop\temp\p9.png
 --WebAppBoundary--
 
 ### 获取用户头像URL（需要登录）
