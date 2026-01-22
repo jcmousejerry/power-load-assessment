@@ -25,10 +25,10 @@ Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEsInN1YiI6IjEiLCJpYXQiOjE3NjE4
 ### 创建负荷预测任务
 POST http://localhost:8081/api/task/create
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEsInN1YiI6IjEiLCJpYXQiOjE3NjE4MzUzODIsImV4cCI6MTc2MTkyMTc4Mn0.dOdvwzTx0VlC4gymNAP6FMny9g0JWpzyt4XMBC0Dgt9admu-agFtD7Aqrto6_seY9aB0SGgf80GXywTgyPeZfA
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjIsInN1YiI6IjIiLCJpYXQiOjE3NjQzMTk3NDIsImV4cCI6MTc2NDQwNjE0Mn0.UBf83xxryMTBFoaJi-shaGsNaVhaCx1ByrBCe9jbvD3U2GSZPRgE355SQ7CrGaaozjWxv3-HaKqTzqHh5KUbcw
 
 {
-  "datasetId": 1,
+  "datasetId": 6,
   "taskType": 2,
   "clusterCount": 0,
   "forecastSteps": 5
@@ -36,4 +36,8 @@ Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEsInN1YiI6IjEiLCJpYXQiOjE3NjE4
 
 ### 获取当前用户的所有任务信息
 GET http://localhost:8081/api/task/list
-Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEsInN1YiI6IjEiLCJpYXQiOjE3NjM5MDI2MTIsImV4cCI6MTc2Mzk4OTAxMn0.9S3PvmtVIvwpCHKdyKKshFe0RaS-1NMZ6_T5Q78bXsjGuWJXbzmWqzyeAGEKsraV7COUqCXVCsoaqPIcl04AEA
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjQsInN1YiI6IjQiLCJpYXQiOjE3NjkwNzQ3ODAsImV4cCI6MTc2OTE2MTE4MH0.W5350eqZH2Pwi6aMO_FleACMNr5lbOolQ_fsnvr7x9GAbgCLYLeg36kQyBZBDsWi1f0utEj3tsuI7qNJjck2Ow
+
+### 管理员获取平台全部用户的所有任务信息
+GET http://localhost:8081/api/task/all
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjQsInN1YiI6IjQiLCJpYXQiOjE3NjkwNzQ3ODAsImV4cCI6MTc2OTE2MTE4MH0.W5350eqZH2Pwi6aMO_FleACMNr5lbOolQ_fsnvr7x9GAbgCLYLeg36kQyBZBDsWi1f0utEj3tsuI7qNJjck2Ow

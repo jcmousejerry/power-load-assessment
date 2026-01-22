@@ -5,12 +5,14 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.chen.server.config.MinioConfig;
 import com.chen.server.entity.DatasetInfo;
 import com.chen.server.entity.User;
+import com.chen.server.enums.UserType;
 import com.chen.server.mapper.DatasetInfoMapper;
 import com.chen.server.result.Result;
 import com.chen.server.service.DatasetService;
 import com.chen.server.utils.LoginUserHolder;
 import io.minio.MinioClient;
 import io.minio.PutObjectArgs;
+import io.minio.RemoveObjectArgs;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -111,4 +113,70 @@ public class DatasetServiceImpl extends ServiceImpl<DatasetInfoMapper, DatasetIn
             return Result.fail("获取数据集列表失败: " + e.getMessage());
         }
     }
+
+    @Override
+    public Result deleteDatasetById(Long id) {
+        try {
+            // 获取当前登录用户
+            User currentUser = LoginUserHolder.getUser();
+            if (currentUser == null) {
+                return Result.fail("用户未登录");
+            }
+
+            // 检查用户是否为管理员
+            if (!UserType.ADMIN.getCode().equals(currentUser.getUserType())) {
+                return Result.fail("权限不足，只有管理员可以删除数据集");
+            }
+
+            // 根据ID查询数据集信息
+            DatasetInfo datasetInfo = datasetInfoMapper.selectById(id);
+            if (datasetInfo == null) {
+                return Result.fail("未找到指定的数据集");
+            }
+
+            // 从MinIO中删除文件
+            try {
+                minioClient.removeObject(
+                        RemoveObjectArgs.builder()
+                                .bucket(minioConfig.getBucketName())
+                                .object(datasetInfo.getPath())
+                                .build()
+                );
+            } catch (Exception e) {
+                return Result.fail("删除MinIO文件失败: " + e.getMessage());
+            }
+
+            // 从数据库中删除记录
+            datasetInfoMapper.deleteById(id);
+
+            return Result.ok("数据集删除成功");
+        } catch (Exception e) {
+            return Result.fail("删除数据集失败: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public Result getAllDatasets() {
+        try {
+            // 获取当前登录用户
+            User currentUser = LoginUserHolder.getUser();
+            if (currentUser == null) {
+                return Result.fail("用户未登录");
+            }
+
+            // 检查用户是否为管理员
+            if (!UserType.ADMIN.getCode().equals(currentUser.getUserType())) {
+                return Result.fail("权限不足，只有管理员可以查询所有数据集信息");
+            }
+
+            // 查询所有数据集信息
+            List<DatasetInfo> datasets = datasetInfoMapper.selectList(null);
+
+            return Result.ok(datasets);
+        } catch (Exception e) {
+            return Result.fail("查询所有数据集信息失败: " + e.getMessage());
+        }
+    }
+
+
 }

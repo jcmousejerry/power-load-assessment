@@ -8,4 +8,8 @@ public interface DatasetService {
     Result uploadDataset(MultipartFile file, String name, String startDate, String endDate);
 
     Result getCurrentUserDatasets();
+
+    Result deleteDatasetById(Long id);
+
+    Result getAllDatasets();
 }

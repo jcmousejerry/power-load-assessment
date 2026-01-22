@@ -8,4 +8,6 @@ public interface DataAnalysisTaskService {
     Result createTask(DataAnalysisTaskDTO taskDTO);
 
     Result getCurrentUserTasks();
+
+    Result getAllUsersTasks();
 }

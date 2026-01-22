@@ -30,4 +30,13 @@ public class DataAnalysisTaskController {
     public Result getCurrentUserTasks() {
         return dataAnalysisTaskService.getCurrentUserTasks();
     }
+
+    /**
+     * 管理员获取平台全部用户的所有任务信息
+     * @return 平台全部用户的所有任务列表
+     */
+    @GetMapping("/all")
+    public Result getAllUsersTasks() {
+        return dataAnalysisTaskService.getAllUsersTasks();
+    }
 }

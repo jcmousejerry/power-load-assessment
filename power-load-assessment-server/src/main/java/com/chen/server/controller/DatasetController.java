@@ -25,4 +25,14 @@ public class DatasetController {
     public Result listCurrentUserDatasets() {
         return datasetService.getCurrentUserDatasets();
     }
+
+    @DeleteMapping("/delete/{id}")
+    public Result deleteDatasetById(@PathVariable Long id) {
+        return datasetService.deleteDatasetById(id);
+    }
+
+    @GetMapping("/admin/list-all")
+    public Result listAllDatasets() {
+        return datasetService.getAllDatasets();
+    }
 }

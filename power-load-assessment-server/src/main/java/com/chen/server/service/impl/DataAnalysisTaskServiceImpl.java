@@ -4,8 +4,8 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.chen.server.dto.DataAnalysisTaskDTO;
 import com.chen.server.entity.DataAnalysisTask;
-import com.chen.server.entity.DatasetInfo;
-import com.chen.server.enums.TaskStatus;
+import com.chen.server.entity.User;
+import com.chen.server.enums.UserType;
 import com.chen.server.mapper.DataAnalysisTaskMapper;
 import com.chen.server.mapper.DatasetInfoMapper;
 import com.chen.server.result.Result;
@@ -39,30 +39,27 @@ public class DataAnalysisTaskServiceImpl extends ServiceImpl<DataAnalysisTaskMap
             DataAnalysisTask task = new DataAnalysisTask();
             BeanUtils.copyProperties(taskDTO, task);
 
-            // 设置用户ID
-            task.setUserId(LoginUserHolder.getUserId());
+            // 设置当前登录用户的ID
+            Long userId = LoginUserHolder.getUserId();
+            if (userId == null) {
+                return Result.fail("用户未登录");
+            }
+            task.setUserId(userId);
 
             // 设置任务状态为未完成
-            task.setStatus(TaskStatus.PENDING.getCode());
+            task.setStatus(0);
 
-            System.out.println(task.getId());
-
-            // 保存到数据库
+            // 保存任务
             dataAnalysisTaskMapper.insert(task);
 
-            System.out.println(task.getId());
-
-            // 查询数据集名称
-            DatasetInfo datasetInfo = datasetInfoMapper.selectById(taskDTO.getDatasetId());
-            String datasetPath = datasetInfo != null ? datasetInfo.getPath() : "";
-
-            // 构造包含数据集名称的消息
+            // 准备发送到Kafka的消息
             Map<String, Object> message = new HashMap<>();
-            message.put("task", task);
-            message.put("datasetPath", datasetPath);
-            // 添加clusterCount和forecastSteps到消息中
+            message.put("taskId", task.getId());
+            message.put("datasetId", task.getDatasetId());
+            message.put("taskType", task.getTaskType());
             message.put("clusterCount", taskDTO.getClusterCount());
             message.put("forecastSteps", taskDTO.getForecastSteps());
+            message.put("status", 0); // 初始状态
 
             // 发送到Kafka
             kafkaTemplate.send("data-analysis-task-topic", message);
@@ -94,6 +91,34 @@ public class DataAnalysisTaskServiceImpl extends ServiceImpl<DataAnalysisTaskMap
             return Result.ok(tasks);
         } catch (Exception e) {
             return Result.fail("查询任务列表失败: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public Result getAllUsersTasks() {
+        try {
+            // 获取当前登录用户
+            User currentUser = LoginUserHolder.getUser();
+            if (currentUser == null) {
+                return Result.fail("用户未登录");
+            }
+
+            // 检查用户是否为管理员
+            if (!UserType.ADMIN.getCode().equals(currentUser.getUserType())) {
+                return Result.fail("权限不足，只有管理员可以查看全部任务信息");
+            }
+
+            // 构造查询条件：查询所有任务
+            QueryWrapper<DataAnalysisTask> queryWrapper = new QueryWrapper<>();
+            queryWrapper.orderByDesc("create_time");
+
+            // 执行查询
+            List<DataAnalysisTask> tasks = dataAnalysisTaskMapper.selectList(queryWrapper);
+
+            // 返回成功结果
+            return Result.ok(tasks);
+        } catch (Exception e) {
+            return Result.fail("查询全部任务列表失败: " + e.getMessage());
         }
     }
 }

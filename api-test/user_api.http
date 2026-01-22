@@ -3,7 +3,7 @@ POST http://localhost:8081/api/user/register
 Content-Type: application/json
 
 {
-  "username": "testuser3",
+  "username": "testadmin",
   "password": "password123"
 }
 
@@ -12,26 +12,26 @@ POST http://localhost:8081/api/user/login
 Content-Type: application/json
 
 {
-  "username": "testuser",
+  "username": "testadmin",
   "password": "password123"
 }
 
 ### 获取用户个人信息（需要登录）
 GET http://localhost:8081/api/user/profile
-Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEsInN1YiI6IjEiLCJpYXQiOjE3NjM5MDI2MTIsImV4cCI6MTc2Mzk4OTAxMn0.9S3PvmtVIvwpCHKdyKKshFe0RaS-1NMZ6_T5Q78bXsjGuWJXbzmWqzyeAGEKsraV7COUqCXVCsoaqPIcl04AEA
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjQsInN1YiI6IjQiLCJpYXQiOjE3NjkwNzQ3ODAsImV4cCI6MTc2OTE2MTE4MH0.W5350eqZH2Pwi6aMO_FleACMNr5lbOolQ_fsnvr7x9GAbgCLYLeg36kQyBZBDsWi1f0utEj3tsuI7qNJjck2Ow
 
 ### 上传用户头像（需要登录）
 POST http://localhost:8081/api/user/avatar
-Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEsInN1YiI6IjEiLCJpYXQiOjE3NjM4OTA4MDQsImV4cCI6MTc2Mzk3NzIwNH0.6Zv-1b56lQHMPu1nPxrjZM1YGQld7zi8St0I_TwHlNHsblsMDbetAfgmyp6UuR-dbZWrX1cYc9PFB_Fwoqm1eQ
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjQsInN1YiI6IjQiLCJpYXQiOjE3NjkwNzQ3ODAsImV4cCI6MTc2OTE2MTE4MH0.W5350eqZH2Pwi6aMO_FleACMNr5lbOolQ_fsnvr7x9GAbgCLYLeg36kQyBZBDsWi1f0utEj3tsuI7qNJjck2Ow
 Content-Type: multipart/form-data; boundary=WebAppBoundary
 
 --WebAppBoundary
-Content-Disposition: form-data; name="avatar"; filename="p9.png"
+Content-Disposition: form-data; name="avatar"; filename="p10.png"
 
-< C:\Users\25064\Desktop\temp\p9.png
+< C:\Users\25064\Desktop\temp\p10.png
 --WebAppBoundary--
 
 ### 获取用户头像URL（需要登录）
 GET http://localhost:8081/api/user/avatar-url
-Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEsInN1YiI6IjEiLCJpYXQiOjE3NjEwNTk1NDksImV4cCI6MTc2MTE0NTk0OX0.wSFEqJrbf6KgcSFNf88ODLu7os_mDaz3gExNdLwLA6TQogD5XZujAgTCaaxYk6OSvC5tI-9W5x40de_0bsBXqg
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjQsInN1YiI6IjQiLCJpYXQiOjE3NjkwNzQ3ODAsImV4cCI6MTc2OTE2MTE4MH0.W5350eqZH2Pwi6aMO_FleACMNr5lbOolQ_fsnvr7x9GAbgCLYLeg36kQyBZBDsWi1f0utEj3tsuI7qNJjck2Ow
 
