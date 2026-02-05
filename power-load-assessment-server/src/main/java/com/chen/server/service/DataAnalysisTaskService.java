@@ -10,4 +10,6 @@ public interface DataAnalysisTaskService {
     Result getCurrentUserTasks();
 
     Result getAllUsersTasks();
+
+    Result deleteTaskById(Long id);
 }

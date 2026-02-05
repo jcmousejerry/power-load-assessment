@@ -4,11 +4,7 @@ import com.chen.server.dto.DataAnalysisTaskDTO;
 import com.chen.server.result.Result;
 import com.chen.server.service.DataAnalysisTaskService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/task")
@@ -39,4 +35,15 @@ public class DataAnalysisTaskController {
     public Result getAllUsersTasks() {
         return dataAnalysisTaskService.getAllUsersTasks();
     }
+
+    /**
+     * 管理员根据任务id删除指定任务的相关数据和模型
+     * @param id 任务ID
+     * @return 删除结果
+     */
+    @DeleteMapping("/delete/{id}")
+    public Result deleteTaskById(@PathVariable Long id) {
+        return dataAnalysisTaskService.deleteTaskById(id);
+    }
+
 }

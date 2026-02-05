@@ -12,13 +12,13 @@ POST http://localhost:8081/api/user/login
 Content-Type: application/json
 
 {
-  "username": "testadmin",
+  "username": "testuser",
   "password": "password123"
 }
 
 ### 获取用户个人信息（需要登录）
 GET http://localhost:8081/api/user/profile
-Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjQsInN1YiI6IjQiLCJpYXQiOjE3NjkwNzQ3ODAsImV4cCI6MTc2OTE2MTE4MH0.W5350eqZH2Pwi6aMO_FleACMNr5lbOolQ_fsnvr7x9GAbgCLYLeg36kQyBZBDsWi1f0utEj3tsuI7qNJjck2Ow
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEsInN1YiI6IjEiLCJpYXQiOjE3NzAyODUzMjQsImV4cCI6MTc3MDM3MTcyNH0.ylvDCPD9PFPcfQKkxybKC3rbfIfMarHYVJVnWIuqLVSoVD2JG1vljJwqt5YOa7-_0FexK2N9eScdARMWCufAQQ
 
 ### 上传用户头像（需要登录）
 POST http://localhost:8081/api/user/avatar
@@ -35,3 +35,6 @@ Content-Disposition: form-data; name="avatar"; filename="p10.png"
 GET http://localhost:8081/api/user/avatar-url
 Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjQsInN1YiI6IjQiLCJpYXQiOjE3NjkwNzQ3ODAsImV4cCI6MTc2OTE2MTE4MH0.W5350eqZH2Pwi6aMO_FleACMNr5lbOolQ_fsnvr7x9GAbgCLYLeg36kQyBZBDsWi1f0utEj3tsuI7qNJjck2Ow
 
+### 数据测试
+GET http://localhost:8081/api/user/test-data
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjIsInN1YiI6IjIiLCJpYXQiOjE3Njk2NjgyNDIsImV4cCI6MTc2OTc1NDY0Mn0.AZbJQ0JusqKcnRytivswwbQNdIkO65DUE5vaXFGPaHRFkLl9AkunNYX-01doxUgsHeIm2jn3kiJxKKueP-n6rw

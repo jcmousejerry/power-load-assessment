@@ -3,17 +3,18 @@ package com.chen.consumer.listener;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.chen.consumer.entity.DataAnalysisTask;
 import com.chen.consumer.enums.TaskStatus;
-import com.chen.consumer.enums.TaskType;
 import com.chen.consumer.mapper.DataAnalysisTaskMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 
 @Component
@@ -23,6 +24,9 @@ public class DataAnalysisTaskListener {
 
     @Autowired
     private DataAnalysisTaskMapper taskMapper;
+
+    @Autowired
+    private KafkaTemplate<String, Object> kafkaTemplate;
 
     // Python脚本路径
     private static final String PYTHON_SCRIPT_PATH = "D:/ONLY_ENGLISH_DIR/projects/python-scripts-202510/power-load-assessment-scripts/task2.py";
@@ -40,6 +44,17 @@ public class DataAnalysisTaskListener {
             Integer clusterCount = (Integer) message.get("clusterCount");
             Integer forecastSteps = (Integer) message.get("forecastSteps");
 
+            // 安全地提取 userId
+            Object userIdObj = message.get("userId");
+            Long userId;
+            if (userIdObj instanceof Integer) {
+                userId = ((Integer) userIdObj).longValue();
+            } else if (userIdObj instanceof Long) {
+                userId = (Long) userIdObj;
+            } else {
+                throw new IllegalArgumentException("userId 必须是 Integer 或 Long 类型");
+            }
+
             // 安全地将 LinkedHashMap 转换为 DataAnalysisTask 对象
             DataAnalysisTask task = convertToDataAnalysisTask(taskObj);
 
@@ -51,11 +66,22 @@ public class DataAnalysisTaskListener {
             // 更新任务状态为已完成
             updateTaskStatus(task.getId(), TaskStatus.COMPLETED.getCode());
 
+            // 发送任务完成通知到服务器端
+            sendTaskCompletionNotification(task.getId(), task.getTaskType(), userId);
+
             logger.info("数据分析任务处理完成: ID={}", task.getId());
         } catch (Exception e) {
             logger.error("处理数据分析任务失败", e);
+
+            // 获取任务对象以获取用户ID
+            Object taskObj = message.get("task");
+            DataAnalysisTask task = convertToDataAnalysisTask(taskObj);
+
+            // 发送任务失败通知
+            sendTaskFailureNotification(task.getId(), task.getTaskType(), task.getUserId(), e.getMessage());
         }
     }
+
 
     /**
      * 执行Python脚本
@@ -135,5 +161,35 @@ public class DataAnalysisTaskListener {
         UpdateWrapper<DataAnalysisTask> updateWrapper = new UpdateWrapper<>();
         updateWrapper.eq("id", taskId).set("status", status);
         taskMapper.update(null, updateWrapper);
+    }
+
+    /**
+     * 发送任务完成通知到服务器端
+     */
+    private void sendTaskCompletionNotification(Long taskId, Integer taskType, Long userId) {
+        // 发送消息到服务器端的通知主题
+        Map<String, Object> notificationMessage = new java.util.HashMap<>();
+        notificationMessage.put("taskId", taskId);
+        notificationMessage.put("taskType", taskType);
+        notificationMessage.put("userId", userId);
+        notificationMessage.put("status", TaskStatus.COMPLETED.getCode());
+        notificationMessage.put("message", "任务已完成");
+
+        kafkaTemplate.send("task-completion-notification", notificationMessage);
+    }
+
+    /**
+     * 发送任务失败通知到服务器端
+     */
+    private void sendTaskFailureNotification(Long taskId, Integer taskType, Long userId, String errorMessage) {
+        // 发送消息到服务器端的通知主题
+        Map<String, Object> notificationMessage = new HashMap<>();
+        notificationMessage.put("taskId", taskId);
+        notificationMessage.put("taskType", taskType);
+        notificationMessage.put("userId", userId);
+        notificationMessage.put("status", 0); // 失败状态
+        notificationMessage.put("message", "任务执行失败: " + errorMessage);
+
+        kafkaTemplate.send("task-completion-notification", notificationMessage);
     }
 }

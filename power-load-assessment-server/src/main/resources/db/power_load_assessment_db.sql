@@ -87,4 +87,3 @@ CREATE TABLE `load_forecast_model` (
   KEY `idx_task_id` (`task_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='负荷预测模型信息表';
 
-

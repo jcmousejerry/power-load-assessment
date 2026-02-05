@@ -12,7 +12,12 @@ spring:
         spring.json.trusted.packages: "*"
         spring.deserializer.key.delegate.class: org.apache.kafka.common.serialization.StringDeserializer
         spring.deserializer.value.delegate.class: org.springframework.kafka.support.serializer.JsonDeserializer
-
+        enable.auto.commit: false         # 关闭自动提交偏移量
+        auto.commit.interval.ms: 10000    # 若启用自动提交则增大提交间隔
+        session.timeout.ms: 30000         # 增大会话超时时间
+        heartbeat.interval.ms: 5000       # 增大心跳间隔
+        max.poll.interval.ms: 600000      # 增大 poll 间隔时间
+        max.poll.records: 100             # 减少每次拉取的记录数
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/power_load_assessment_db?useSSL=false&serverTimezone=UTC

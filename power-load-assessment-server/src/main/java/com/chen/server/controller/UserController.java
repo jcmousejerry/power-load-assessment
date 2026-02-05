@@ -50,4 +50,5 @@ public class UserController {
     public Result getAvatarUrl() {
         return avatarService.getCurrentUserAvatarUrl();
     }
+
 }

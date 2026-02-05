@@ -1,7 +1,7 @@
 ### 创建数据分析任务
 POST http://localhost:8081/api/task/create
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEsInN1YiI6IjEiLCJpYXQiOjE3NjIzMzI4MzgsImV4cCI6MTc2MjQxOTIzOH0.DAy9Y_ntHuA-AR05e6jRWcJXQLhK3RB3dxysEVkD-XstE9RbUjr1DPPFQ34dBp3LOLHgwcurpVo-mspuzZ-09A
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEsInN1YiI6IjEiLCJpYXQiOjE3NzAyODUzMjQsImV4cCI6MTc3MDM3MTcyNH0.ylvDCPD9PFPcfQKkxybKC3rbfIfMarHYVJVnWIuqLVSoVD2JG1vljJwqt5YOa7-_0FexK2N9eScdARMWCufAQQ
 
 {
   "datasetId": 1,
@@ -13,22 +13,22 @@ Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEsInN1YiI6IjEiLCJpYXQiOjE3NjIz
 ### 创建用户聚类任务
 POST http://localhost:8081/api/task/create
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEsInN1YiI6IjEiLCJpYXQiOjE3NjE4MDg0ODAsImV4cCI6MTc2MTg5NDg4MH0.cMebPs_KTr2OuER_HkJy22GB0Y_fpDxYbVlHnELoOgQRujhV0vKgdok0-JjeOT7X3HxTZdf3m4dJWOkPuEH38w
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjIsInN1YiI6IjIiLCJpYXQiOjE3NzAyMDEzMTAsImV4cCI6MTc3MDI4NzcxMH0.tNKHcceW0dQu44TfmImI-sx6ofuap4hf1JvsnrpGJF1tLYDtCFLaqcTnMia17O3EZdOHA9Q8OXbQQgp_-SPkaw
 
 {
-  "datasetId": 1,
+  "datasetId": 3,
   "taskType": 1,
-  "clusterCount": 2,
+  "clusterCount": 3,
   "forecastSteps": 0
 }
 
 ### 创建负荷预测任务
 POST http://localhost:8081/api/task/create
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjIsInN1YiI6IjIiLCJpYXQiOjE3NjQzMTk3NDIsImV4cCI6MTc2NDQwNjE0Mn0.UBf83xxryMTBFoaJi-shaGsNaVhaCx1ByrBCe9jbvD3U2GSZPRgE355SQ7CrGaaozjWxv3-HaKqTzqHh5KUbcw
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjIsInN1YiI6IjIiLCJpYXQiOjE3NzAyMDEzMTAsImV4cCI6MTc3MDI4NzcxMH0.tNKHcceW0dQu44TfmImI-sx6ofuap4hf1JvsnrpGJF1tLYDtCFLaqcTnMia17O3EZdOHA9Q8OXbQQgp_-SPkaw
 
 {
-  "datasetId": 6,
+  "datasetId": 3,
   "taskType": 2,
   "clusterCount": 0,
   "forecastSteps": 5
@@ -40,4 +40,8 @@ Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjQsInN1YiI6IjQiLCJpYXQiOjE3Njkw
 
 ### 管理员获取平台全部用户的所有任务信息
 GET http://localhost:8081/api/task/all
-Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjQsInN1YiI6IjQiLCJpYXQiOjE3NjkwNzQ3ODAsImV4cCI6MTc2OTE2MTE4MH0.W5350eqZH2Pwi6aMO_FleACMNr5lbOolQ_fsnvr7x9GAbgCLYLeg36kQyBZBDsWi1f0utEj3tsuI7qNJjck2Ow
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjQsInN1YiI6IjQiLCJpYXQiOjE3Njk0MjA0MDEsImV4cCI6MTc2OTUwNjgwMX0._de07U7t4oMyhpJyyiteSbu4Psu2HIovt5m8TepR9ox2JS8jG4poxO3c8o6FOQiTG060O0jGQs0dMxhEd8lw8g
+
+### 管理员根据任务id删除指定任务的相关数据和模型
+DELETE http://localhost:8081/api/task/delete/2015418874387742721
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjQsInN1YiI6IjQiLCJpYXQiOjE3Njk0MjA0MDEsImV4cCI6MTc2OTUwNjgwMX0._de07U7t4oMyhpJyyiteSbu4Psu2HIovt5m8TepR9ox2JS8jG4poxO3c8o6FOQiTG060O0jGQs0dMxhEd8lw8g
