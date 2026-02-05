@@ -1,9 +1,10 @@
-temp/
-
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+
+# 排除 api-test 目录下的 node_modules
+api-test/node_modules/
 
 ### IntelliJ IDEA ###
 .idea/
