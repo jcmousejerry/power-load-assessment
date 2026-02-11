@@ -29,7 +29,7 @@ public class DataAnalysisTaskListener {
     private KafkaTemplate<String, Object> kafkaTemplate;
 
     // Python脚本路径
-    private static final String PYTHON_SCRIPT_PATH = "D:/ONLY_ENGLISH_DIR/projects/python-scripts-202510/power-load-assessment-scripts/task2.py";
+    private static final String PYTHON_SCRIPT_PATH = "D:/ONLY_ENGLISH_DIR/projects/python-scripts-202510/power-load-assessment-scripts/data_analysis_task.py";
 
     // 指定Anaconda虚拟环境中的Python解释器路径
     private static final String PYTHON_EXECUTABLE_PATH = "D:/anaconda/envs/self_env_2/python.exe";

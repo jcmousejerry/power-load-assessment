@@ -12,13 +12,13 @@ POST http://localhost:8081/api/user/login
 Content-Type: application/json
 
 {
-  "username": "testuser",
+  "username": "testuser2",
   "password": "password123"
 }
 
 ### 获取用户个人信息（需要登录）
 GET http://localhost:8081/api/user/profile
-Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEsInN1YiI6IjEiLCJpYXQiOjE3NzAyODUzMjQsImV4cCI6MTc3MDM3MTcyNH0.ylvDCPD9PFPcfQKkxybKC3rbfIfMarHYVJVnWIuqLVSoVD2JG1vljJwqt5YOa7-_0FexK2N9eScdARMWCufAQQ
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjQsInN1YiI6IjQiLCJpYXQiOjE3NzA3OTEyMzYsImV4cCI6MTc3MDg3NzYzNn0.MmIsxesTCxU-awyFjVeSmtZ36bQNKRomDkbOw6QyhvBlKrVssfWm0eKGIAXQ50rcMu538xkTa81QMDBQ8LJ1Ow
 
 ### 上传用户头像（需要登录）
 POST http://localhost:8081/api/user/avatar

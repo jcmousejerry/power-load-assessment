@@ -26,6 +26,11 @@ public class RedisConfig {
         objectMapper.registerModule(new JavaTimeModule());
         // 禁用将日期写为时间戳的行为
         objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+        // 启用类型信息
+        objectMapper.activateDefaultTyping(
+                objectMapper.getPolymorphicTypeValidator(),
+                ObjectMapper.DefaultTyping.NON_FINAL
+        );
 
         serializer.setObjectMapper(objectMapper);
 
@@ -39,4 +44,3 @@ public class RedisConfig {
         return template;
     }
 }
-
