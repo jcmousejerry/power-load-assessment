@@ -1,0 +1,31 @@
+USE `loadflex_hub`;
+
+SET FOREIGN_KEY_CHECKS = 0;
+DELETE FROM `grid_risk_alert`;
+DELETE FROM `grid_transformer_metric_history`;
+DELETE FROM `grid_transformer_metric`;
+DELETE FROM `consumed_event`;
+DELETE FROM `outbox_event`;
+DELETE FROM `analysis_result`;
+DELETE FROM `task_event`;
+DELETE FROM `task_attempt`;
+DELETE FROM `task_dependency`;
+DELETE FROM `analysis_task`;
+DELETE FROM `analysis_pipeline`;
+DELETE FROM `dataset_snapshot`;
+DELETE FROM `dataset`;
+DELETE FROM `audit_log`;
+SET FOREIGN_KEY_CHECKS = 1;
+
+ALTER TABLE `grid_risk_alert` AUTO_INCREMENT = 1;
+ALTER TABLE `grid_transformer_metric_history` AUTO_INCREMENT = 1;
+ALTER TABLE `consumed_event` AUTO_INCREMENT = 1;
+ALTER TABLE `outbox_event` AUTO_INCREMENT = 1;
+ALTER TABLE `analysis_result` AUTO_INCREMENT = 1;
+ALTER TABLE `task_event` AUTO_INCREMENT = 1;
+ALTER TABLE `task_attempt` AUTO_INCREMENT = 1;
+ALTER TABLE `analysis_task` AUTO_INCREMENT = 1;
+ALTER TABLE `analysis_pipeline` AUTO_INCREMENT = 1;
+ALTER TABLE `dataset_snapshot` AUTO_INCREMENT = 1;
+ALTER TABLE `dataset` AUTO_INCREMENT = 1;
+ALTER TABLE `audit_log` AUTO_INCREMENT = 1;

@@ -1,0 +1,78 @@
+server:
+  port: ${SERVER_PORT:8080}
+
+spring:
+  application:
+    name: loadflex-server
+  datasource:
+    url: ${DB_URL:jdbc:mysql://127.0.0.1:3306/loadflex_hub?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&useSSL=false}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:123456}
+  redis:
+    host: ${REDIS_HOST:127.0.0.1}
+    port: ${REDIS_PORT:6379}
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:127.0.0.1:9092}
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    consumer:
+      group-id: loadflex-server-notification
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: com.loadflex.common.messaging,java.util
+  servlet:
+    multipart:
+      max-file-size: 200MB
+      max-request-size: 200MB
+
+loadflex:
+  jwt:
+    secret: ${JWT_SECRET:loadflex-development-secret-key-change-before-production-2026}
+    expiration-seconds: ${JWT_EXPIRATION_SECONDS:28800}
+  minio:
+    endpoint: ${MINIO_ENDPOINT:http://127.0.0.1:9000}
+    access-key: ${MINIO_ACCESS_KEY:minioadmin}
+    secret-key: ${MINIO_SECRET_KEY:minioadmin}
+    bucket: ${MINIO_BUCKET:loadflex}
+  kafka:
+    task-topic: loadflex-task-command
+    notification-topic: loadflex-task-notification
+  grid:
+    telemetry-topic: grid-telemetry-raw
+    metric-topic: grid-transformer-metric
+    alert-topic: grid-risk-alert
+    simulator-enabled: ${GRID_SIMULATOR_ENABLED:true}
+    simulator-interval-ms: ${GRID_SIMULATOR_INTERVAL_MS:2000}
+    clickhouse-http-endpoint: ${CLICKHOUSE_HTTP_ENDPOINT:http://192.168.167.134:8123}
+    clickhouse-username: ${CLICKHOUSE_USERNAME:loadflex}
+    clickhouse-password: ${CLICKHOUSE_PASSWORD:123456}
+    project-root: ${PROJECT_ROOT:.}
+    spark-script: ${GRID_SPARK_SCRIPT:./scripts/Run-SparkThresholds.ps1}
+    spark-scheduler-enabled: ${GRID_SPARK_SCHEDULER_ENABLED:true}
+    spark-initial-delay-ms: ${GRID_SPARK_INITIAL_DELAY_MS:1800000}
+    spark-interval-ms: ${GRID_SPARK_INTERVAL_MS:1800000}
+    metric-retention-days: ${GRID_METRIC_RETENTION_DAYS:7}
+    alert-retention-days: ${GRID_ALERT_RETENTION_DAYS:7}
+    alert-max-records: ${GRID_ALERT_MAX_RECORDS:50}
+    retention-cleanup-initial-delay-ms: ${GRID_RETENTION_CLEANUP_INITIAL_DELAY_MS:60000}
+    retention-cleanup-interval-ms: ${GRID_RETENTION_CLEANUP_INTERVAL_MS:3600000}
+  result-cache:
+    ttl-seconds: ${RESULT_CACHE_TTL_SECONDS:600}
+  bailian:
+    model: ${BAILIAN_MODEL:qwen3.7-plus-2026-05-26}
+    api-key: ${DASHSCOPE_API_KEY:}
+    workspace-id: ${BAILIAN_WORKSPACE_ID:}
+    base-url: ${BAILIAN_BASE_URL:}
+  queue:
+    # 每个资源池同一时间只调度一个任务；任务在被调度前不会进入 Kafka。
+    dispatch-interval-ms: ${QUEUE_DISPATCH_INTERVAL_MS:500}
+    # MySQL 仅低频扫描，用于 Redis 启动恢复和异常对账。
+    reconcile-initial-delay-ms: ${QUEUE_RECONCILE_INITIAL_DELAY_MS:300000}
+    reconcile-interval-ms: ${QUEUE_RECONCILE_INTERVAL_MS:300000}
+
+logging:
+  level:
+    com.loadflex: INFO

@@ -1,0 +1,72 @@
+[
+  {
+    "file": "01_standard_long_12users_30days.csv",
+    "sourceFormat": "LONG",
+    "sourceRows": 34560,
+    "normalizedRows": 34560,
+    "invalidRows": 0,
+    "duplicateRows": 0,
+    "users": 12,
+    "intervalMinutes": 15,
+    "clusters": 3,
+    "qualityScore": 100.0,
+    "forecastModel": "RANDOM_FOREST",
+    "status": "PASS"
+  },
+  {
+    "file": "02_standard_wide_9users_30days.csv",
+    "sourceFormat": "WIDE",
+    "sourceRows": 270,
+    "normalizedRows": 25920,
+    "invalidRows": 0,
+    "duplicateRows": 0,
+    "users": 9,
+    "intervalMinutes": 15,
+    "clusters": 3,
+    "qualityScore": 100.0,
+    "forecastModel": "RANDOM_FOREST",
+    "status": "PASS"
+  },
+  {
+    "file": "03_aggregate_long_60days.csv",
+    "sourceFormat": "LONG",
+    "sourceRows": 5760,
+    "normalizedRows": 5760,
+    "invalidRows": 0,
+    "duplicateRows": 0,
+    "users": 1,
+    "intervalMinutes": 15,
+    "clusters": 3,
+    "qualityScore": 100.0,
+    "forecastModel": "RANDOM_FOREST",
+    "status": "PASS"
+  },
+  {
+    "file": "04_quality_check_with_minor_issues.csv",
+    "sourceFormat": "LONG",
+    "sourceRows": 10698,
+    "normalizedRows": 10673,
+    "invalidRows": 25,
+    "duplicateRows": 23,
+    "users": 8,
+    "intervalMinutes": 15,
+    "clusters": 3,
+    "qualityScore": 99.24,
+    "forecastModel": "RANDOM_FOREST",
+    "status": "PASS"
+  },
+  {
+    "file": "05_standard_long_6users_21days.xlsx",
+    "sourceFormat": "LONG",
+    "sourceRows": 12096,
+    "normalizedRows": 12096,
+    "invalidRows": 0,
+    "duplicateRows": 0,
+    "users": 6,
+    "intervalMinutes": 15,
+    "clusters": 3,
+    "qualityScore": 100.0,
+    "forecastModel": "RANDOM_FOREST",
+    "status": "PASS"
+  }
+]

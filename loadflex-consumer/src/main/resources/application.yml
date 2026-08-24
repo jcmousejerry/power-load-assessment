@@ -1,0 +1,40 @@
+server:
+  port: ${CONSUMER_PORT:8081}
+
+spring:
+  application:
+    name: loadflex-consumer
+  datasource:
+    url: ${DB_URL:jdbc:mysql://127.0.0.1:3306/loadflex_hub?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&useSSL=false}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:123456}
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:127.0.0.1:9092}
+    consumer:
+      group-id: loadflex-algorithm-consumer
+      auto-offset-reset: earliest
+      enable-auto-commit: false
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: com.loadflex.common.messaging
+        spring.json.value.default.type: com.loadflex.common.messaging.TaskCommand
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    listener:
+      ack-mode: record
+      concurrency: 3
+
+loadflex:
+  kafka:
+    task-topic: loadflex-task-command
+    notification-topic: loadflex-task-notification
+  algorithm:
+    base-url: ${ALGORITHM_BASE_URL:http://127.0.0.1:8000}
+    connect-timeout-seconds: 10
+    read-timeout-seconds: 1800
+
+logging:
+  level:
+    com.loadflex: INFO

@@ -1,0 +1,20 @@
+.idea/
+.vscode/
+**/target/
+frontend/node_modules/
+frontend/dist/
+algorithm-python/.pytest_cache/
+algorithm-python/__pycache__/
+algorithm-python/**/*.pyc
+runtime/
+*.log
+.env
+application-local.yml
+
+# Local Alibaba Cloud Bailian credentials and workspace exports
+bailian-docs/api-key相关信息.txt
+bailian-docs/默认业务空间-apiKey-6829892.csv
+bailian-docs/API参考/使用API-3.md
+
+# TypeScript incremental build cache
+frontend/*.tsbuildinfo
