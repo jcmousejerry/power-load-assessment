@@ -7,6 +7,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.net.http.HttpTimeoutException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -17,11 +18,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
 public class BailianClient {
+    private static final Logger LOGGER = LoggerFactory.getLogger(BailianClient.class);
     // 百炼业务空间密钥既可能是传统sk-字符串，也可能是带点分段的JWT样式。
     private static final Pattern API_KEY_PATTERN = Pattern.compile("sk-[A-Za-z0-9._-]{20,}");
     private static final Pattern BASE_URL_PATTERN = Pattern.compile("https://[^\\s,\\\"]+/compatible-mode/v1");
@@ -35,6 +39,9 @@ public class BailianClient {
     private final String configuredWorkspaceId;
     private final String configuredBaseUrl;
     private final Path projectRoot;
+    private final Duration requestTimeout;
+    private final int maxAttempts;
+    private final long retryDelayMs;
 
     public BailianClient(
             ObjectMapper objectMapper,
@@ -42,13 +49,19 @@ public class BailianClient {
             @Value("${loadflex.bailian.api-key:}") String apiKey,
             @Value("${loadflex.bailian.workspace-id:}") String workspaceId,
             @Value("${loadflex.bailian.base-url:}") String baseUrl,
-            @Value("${loadflex.grid.project-root:.}") String projectRoot) {
+            @Value("${loadflex.grid.project-root:.}") String projectRoot,
+            @Value("${loadflex.bailian.request-timeout-ms:90000}") long requestTimeoutMs,
+            @Value("${loadflex.bailian.max-attempts:3}") int maxAttempts,
+            @Value("${loadflex.bailian.retry-delay-ms:1000}") long retryDelayMs) {
         this.objectMapper = objectMapper;
         this.model = model;
         this.configuredApiKey = apiKey;
         this.configuredWorkspaceId = workspaceId;
         this.configuredBaseUrl = baseUrl;
         this.projectRoot = Path.of(projectRoot).toAbsolutePath().normalize();
+        this.requestTimeout = Duration.ofMillis(Math.max(1000L, requestTimeoutMs));
+        this.maxAttempts = Math.max(1, maxAttempts);
+        this.retryDelayMs = Math.max(0L, retryDelayMs);
         this.httpClient =
                 HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(10)).build();
     }
@@ -156,27 +169,79 @@ public class BailianClient {
         if (configuration == null) {
             throw new IllegalStateException("百炼未配置：请设置DASHSCOPE_API_KEY和BAILIAN_WORKSPACE_ID");
         }
+        URI requestUri = URI.create(configuration.baseUrl() + "/chat/completions");
+        String requestBody;
         try {
-            HttpRequest request = HttpRequest.newBuilder(URI.create(configuration.baseUrl() + "/chat/completions"))
-                    .timeout(Duration.ofSeconds(90))
+            requestBody = objectMapper.writeValueAsString(payload);
+        } catch (Exception exception) {
+            throw new IllegalStateException("百炼请求序列化失败：" + exception.getMessage(), exception);
+        }
+        for (int attempt = 1; attempt <= maxAttempts; attempt++) {
+            HttpRequest request = HttpRequest.newBuilder(requestUri)
+                    .timeout(requestTimeout)
                     .header("Authorization", "Bearer " + configuration.apiKey())
                     .header("Content-Type", "application/json")
-                    .POST(HttpRequest.BodyPublishers.ofString(objectMapper.writeValueAsString(payload)))
+                    .POST(HttpRequest.BodyPublishers.ofString(requestBody))
                     .build();
-            HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-            if (response.statusCode() < 200 || response.statusCode() >= 300) {
-                throw new IllegalStateException("百炼调用失败，HTTP状态=" + response.statusCode());
+            try {
+                HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+                if (response.statusCode() >= 200 && response.statusCode() < 300) {
+                    return objectMapper.readTree(response.body());
+                }
+                String reason = "HTTP状态=" + response.statusCode();
+                if (!isRetryableStatus(response.statusCode()) || attempt == maxAttempts) {
+                    throw exhausted(attempt, reason, null);
+                }
+                waitBeforeRetry(attempt, reason);
+            } catch (HttpTimeoutException exception) {
+                if (attempt == maxAttempts) {
+                    throw exhausted(attempt, "request timed out", exception);
+                }
+                waitBeforeRetry(attempt, "request timed out");
+            } catch (InterruptedException exception) {
+                Thread.currentThread().interrupt();
+                throw new IllegalStateException("百炼调用已取消", exception);
+            } catch (java.io.IOException exception) {
+                if (attempt == maxAttempts) {
+                    throw exhausted(attempt, safeMessage(exception), exception);
+                }
+                waitBeforeRetry(attempt, safeMessage(exception));
+            } catch (IllegalStateException exception) {
+                throw exception;
+            } catch (Exception exception) {
+                throw new IllegalStateException("百炼响应解析失败：" + safeMessage(exception), exception);
             }
-            return objectMapper.readTree(response.body());
+        }
+        throw new IllegalStateException("百炼调用失败");
+    }
+
+    private boolean isRetryableStatus(int statusCode) {
+        return statusCode == 408 || statusCode == 429 || statusCode >= 500;
+    }
+
+    private void waitBeforeRetry(int attempt, String reason) {
+        long delayMs = retryDelayMs * attempt;
+        LOGGER.warn("百炼请求第{}次失败，将在{}毫秒后重试：{}", attempt, delayMs, reason);
+        if (delayMs == 0L) {
+            return;
+        }
+        try {
+            Thread.sleep(delayMs);
         } catch (InterruptedException exception) {
             Thread.currentThread().interrupt();
             throw new IllegalStateException("百炼调用已取消", exception);
-        } catch (Exception exception) {
-            if (exception instanceof IllegalStateException) {
-                throw (IllegalStateException) exception;
-            }
-            throw new IllegalStateException("百炼调用失败：" + exception.getMessage(), exception);
         }
+    }
+
+    private IllegalStateException exhausted(int attempts, String reason, Exception cause) {
+        String message = "百炼调用失败，已尝试" + attempts + "次：" + reason;
+        return cause == null ? new IllegalStateException(message) : new IllegalStateException(message, cause);
+    }
+
+    private String safeMessage(Exception exception) {
+        return exception.getMessage() == null || exception.getMessage().isBlank()
+                ? exception.getClass().getSimpleName()
+                : exception.getMessage();
     }
 
     private Configuration resolveConfiguration() {

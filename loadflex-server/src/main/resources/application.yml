@@ -66,6 +66,9 @@ loadflex:
     api-key: ${DASHSCOPE_API_KEY:}
     workspace-id: ${BAILIAN_WORKSPACE_ID:}
     base-url: ${BAILIAN_BASE_URL:}
+    request-timeout-ms: ${BAILIAN_REQUEST_TIMEOUT_MS:90000}
+    max-attempts: ${BAILIAN_MAX_ATTEMPTS:3}
+    retry-delay-ms: ${BAILIAN_RETRY_DELAY_MS:1000}
   queue:
     # 每个资源池同一时间只调度一个任务；任务在被调度前不会进入 Kafka。
     dispatch-interval-ms: ${QUEUE_DISPATCH_INTERVAL_MS:500}
